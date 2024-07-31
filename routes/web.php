@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+
+Route::prefix('categories')->group(function (){
+    Route::get('/create',[CategoryController::class, 'create'])->name('category.create');
+    Route::post('/store',[CategoryController::class, 'store'])->name('category.store');
+
+});
