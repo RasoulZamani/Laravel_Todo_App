@@ -38,6 +38,7 @@ class CategoryController extends Controller
     public function edit(Category $category){
         return view('categories.edit', compact('category'));
     }
+
     // update category in db
     public function update(Category $category, Request $request){
         // validate data
@@ -45,10 +46,17 @@ class CategoryController extends Controller
             'title'=> ['required', 'min:3', 'max:255']
         ]);
         $categoryTitle = $request->title;
+        
         // update data
         $category->update([
             'title' => $categoryTitle 
         ]);
+        return redirect()->route('category.index');
+    }
+
+    // delete category 
+    public function destroy(Category $category){
+        $category->delete();
         return redirect()->route('category.index');
     }
 
