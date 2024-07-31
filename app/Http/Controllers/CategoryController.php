@@ -34,4 +34,22 @@ class CategoryController extends Controller
         return redirect()->route('category.index');    
     }
 
+    // edit form for category
+    public function edit(Category $category){
+        return view('categories.edit', compact('category'));
+    }
+    // update category in db
+    public function update(Category $category, Request $request){
+        // validate data
+        $request->validate([
+            'title'=> ['required', 'min:3', 'max:255']
+        ]);
+        $categoryTitle = $request->title;
+        // update data
+        $category->update([
+            'title' => $categoryTitle 
+        ]);
+        return redirect()->route('category.index');
+    }
+
 }
