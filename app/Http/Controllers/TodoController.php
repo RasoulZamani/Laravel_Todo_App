@@ -11,7 +11,7 @@ class TodoController extends Controller
 {      
     // Show all todo instances
     public function index(){
-        $todos = Todo::all();
+        $todos = Todo::paginate(3);//all();
         return view('todos.index',compact('todos'));
     }
 

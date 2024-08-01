@@ -37,6 +37,8 @@
                     @endforeach
                 </tbody>
             </table>
+
+            {{ $todos->links('layout.paginate') }}
         </div>
     </div>
 @endsection
