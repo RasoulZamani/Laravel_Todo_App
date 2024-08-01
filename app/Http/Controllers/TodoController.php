@@ -92,6 +92,8 @@ class TodoController extends Controller
 
     // Delete todo by id
     public function destroy(Todo $todo){
+        
+        Storage::delete('/images/'.$todo->image); //delete image 
         $todo->delete();
         return redirect()->route('todo.index');
     }
