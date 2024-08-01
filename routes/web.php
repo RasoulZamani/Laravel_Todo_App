@@ -16,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+Route::prefix('todos')->group(function (){
+    Route::get('/',[TodoController::class, 'index'])->name('todo.index');
+    Route::get('/create',[TodoController::class, 'create'])->name('todo.create');
+    Route::get('/{todo}',[TodoController::class, 'show'])->name('todo.show');
+    Route::get('/{todo}/completed',[TodoController::class, 'completed'])->name('todo.completed');
+    Route::post('/store',[TodoController::class, 'store'])->name('todo.store');
+    Route::get('/{todo}/edit',[TodoController::class, 'edit'])->name('todo.edit');
+    Route::put('/{todo}', [TodoController::class, 'update'])->name('todo.update');
+    Route::delete('/{todo}', [TodoController::class, 'destroy'])->name('todo.destroy');
+    
+});
 
 Route::prefix('categories')->group(function (){
     Route::get('/',[CategoryController::class, 'index'])->name('category.index');

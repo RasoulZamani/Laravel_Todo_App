@@ -23,10 +23,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Todo</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('todo.index') }}">Todo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('category.create') }}">Category</a>
+                        <a class="nav-link" href="{{ route('category.index') }}">Category</a>
                     </li>
                 </ul>
             </div>
