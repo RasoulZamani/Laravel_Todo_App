@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+Route::get('/', [TodoController::class, 'index'])->name('home');
+Route::prefix('users')->group(function (){
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('register.post');
+});
 Route::prefix('todos')->group(function (){
     Route::get('/',[TodoController::class, 'index'])->name('todo.index');
     Route::get('/create',[TodoController::class, 'create'])->name('todo.create');
