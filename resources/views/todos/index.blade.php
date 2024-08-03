@@ -2,6 +2,14 @@
 
 @section('content')
     <div class="card">
+        @if (session()->has('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+        @if (session()->has('success'))
+                    <div class="alert alert-info">{{ session('success') }}</div>
+        @endif
+        
+        @auth
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="">Todos</h5>
             <a href="{{ route('todo.create') }}" class="btn btn-dark">create</a>
@@ -40,5 +48,9 @@
 
             {{ $todos->links('layout.paginate') }}
         </div>
+        @endauth
+        @guest
+            <h3>Please <a href="{{ route('login') }}" >Login</a> to use awsome Todo app!</h3> 
+        @endguest
     </div>
 @endsection

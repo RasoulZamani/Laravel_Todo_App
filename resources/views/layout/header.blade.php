@@ -29,10 +29,16 @@
                         <a class="nav-link" href="{{ route('category.index') }}">Category</a>
                     </li>
                 </ul>
-                <div class="d-flex">
-                    <a href="#" class="btn btn-sm btn-outline-dark">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-sm btn-secondary ms-2">Register</a>
-                </div>
+                @if(auth()->check())
+                    <a href="#" class="btn btn-sm btn-outline-dark">{{ auth()->user()->name }}</a>
+                    <a href="{{ route('logout') }}" class="btn btn-sm btn-outline-dark">Logout</a>
+
+                @else
+                    <div class="d-flex">
+                        <a href="{{ route('login') }}" class="btn btn-sm btn-outline-dark">Login</a>
+                        <a href="{{ route('register') }}" class="btn btn-sm btn-secondary ms-2">Register</a>
+                    </div>
+                @endif
             </div>
         </div>
     </nav>

@@ -20,7 +20,12 @@ Route::get('/', [TodoController::class, 'index'])->name('home');
 Route::prefix('users')->group(function (){
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register.post');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 });
+
 Route::prefix('todos')->group(function (){
     Route::get('/',[TodoController::class, 'index'])->name('todo.index');
     Route::get('/create',[TodoController::class, 'create'])->name('todo.create');
